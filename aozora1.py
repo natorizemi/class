@@ -1,6 +1,7 @@
-#-*- coding: utf-8 -*-
+# p-*- coding: utf-8 -*-
 
-import os, MeCab
+import os
+import MeCab
 
 # 分かち書きしたファイル格納用のディレクトリ
 if not os.path.exists('wakati'):
@@ -9,6 +10,7 @@ if not os.path.exists('wakati'):
 tagger = MeCab.Tagger()
 tagger.parseToNode('')
 
+
 def lineWakatiWriter(line, writer):
     node = tagger.parseToNode(line)
     while node:
@@ -16,8 +18,9 @@ def lineWakatiWriter(line, writer):
             writer.write(node.surface + '\n')
         node = node.next
 
+
 for file in os.listdir('data'):
-    #with open('data/' + file, 'r', encoding='shift_jis') as reader, open('wakati/' + file, 'w', encoding='shift_jis') as writer:
-    #with open('aozora/' + file, 'r') as reader:
-        for line in reader:
-            lineWakatiWriter(line, writer)
+    # with open('data/' + file, 'r', encoding='shift_jis') as reader, open('wakati/' + file, 'w', encoding='shift_jis') as writer:
+    # with open('aozora/' + file, 'r') as reader:
+    for line in reader:
+        lineWakatiWriter(line, writer)
