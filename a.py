@@ -45,7 +45,8 @@ def wakati(line):
                 w = ""
         node = node.next
 
-path = "/Users/ay/Desktop/class/M政治データベース論/data/"
+path = os.getcwd()+"/data/"
+#path = "/Users/ay/Desktop/class/M政治データベース論/data/"
 files = []
 texts = []
 docs = []
