@@ -3,20 +3,17 @@ import re
 import MeCab
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.decomposition import TruncatedSVD
-from sklearn.preprocessing import Normalizer
 
 mecab = MeCab.Tagger()
 mecab.parse("")
 
 
 def tf(doc):
-    #vectorizer = CountVectorizer(token_pattern=u'(?u)\\b\\w+\\b')
+    # vectorizer = CountVectorizer(token_pattern=u'(?u)\\b\\w+\\b')
     vectorizer = TfidfVectorizer(
         min_df=1, max_df=50, token_pattern=u'(?u)\\b\\w+\\b')
     features = vectorizer.fit_transform(doc)
-    #terms = vectorizer.get_feature_names()
+    # terms = vectorizer.get_feature_names()
     # return features, terms
     feature_array = np.array(vectorizer.get_feature_names())
     tfidf_sorting = np.argsort(features.toarray()).flatten()[::-1]
@@ -42,7 +39,9 @@ def wakati(line):
         feature = node.feature.split(",")
 
         # 除外/包含リスト
-        if (not feature[2] == "人名") and ((re.search('[0-9０-９]+', node.surface) and feature[6] == "*") or (not feature[6] == "*")):
+        if (not feature[2] == "人名") and \
+                ((re.search('[0-9０-９]+', node.surface) and
+                  feature[6] == "*") or (not feature[6] == "*")):
             if feature[0] == "名詞":
                 w += node.surface
             else:
@@ -70,7 +69,7 @@ for file in files:
             line = re.sub('¥s|　|¥n|¥r', '', line)
             wakati(line)
         docs.append(wL)
-        #print (docs)
+        # print (docs)
 docs = [' '.join(d) for d in docs]
 
 res = tf(docs)
