@@ -4,13 +4,17 @@ import os
 
 # 引数として、CountVectorizerとTfidfTransformerで使った双方の引数が指定できるようになっている
 tfidf_vectorizer = TfidfVectorizer(
-    input='filename', max_df=0.5, min_df=1, max_features=3000, norm='l2', encoding="shift_jis")
+    input='filename', max_df=0.5, min_df=1, max_features=3000,
+    norm='l2', encoding="shift_jis"
+)
 
 
 # ファイル名で渡すので、inputにfilename指定して初期化
 # max_dfは0.5（半分以上の文書に出現する言葉はいらん）を設定
 count_vectorizer = CountVectorizer(
-    input='filename', max_df=0.5, min_df=1, max_features=3000, encoding="shift_jis")
+    input='filename', max_df=0.5, min_df=1, max_features=3000,
+    encoding="shift_jis"
+)
 
 # 全ファイルパスを入れた変数でfit_transform
 files = ['wakati/' + path for path in os.listdir('wakati')]
@@ -27,7 +31,7 @@ features = count_vectorizer.get_feature_names()
 
 # index:100〜104までの5つの単語について、各ドキュメントの出現数を出す。
 # 8つの文書を読ませたので、8文書*5文字のmatrixになっている
-#tf.toarray()[:, 100:105]
+# tf.toarray()[:, 100:105]
 
 
 # 全ファイルパスを入れた変数でfit_transform
@@ -45,5 +49,5 @@ print(tfidf.toarray()[:])
 # => array([ 0. ,  0. ,  0. ,  0. ,  0. , 0. ,  0.43341484,  0. ])
 
 # ジョバンニの値
-#tfidf.toarray()[:, features.index('ジョバンニ')]
+# tfidf.toarray()[:, features.index('ジョバンニ')]
 # => array([ 0. ,  0. ,  0. ,  0. ,  0. , 0. ,  0.81533485,,  0. ])
