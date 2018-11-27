@@ -10,22 +10,27 @@ from sklearn.preprocessing import Normalizer
 mecab = MeCab.Tagger()
 mecab.parse("")
 
+
 def tf(doc):
     #vectorizer = CountVectorizer(token_pattern=u'(?u)\\b\\w+\\b')
-    vectorizer = TfidfVectorizer(min_df=1, max_df=50, token_pattern=u'(?u)\\b\\w+\\b')
+    vectorizer = TfidfVectorizer(
+        min_df=1, max_df=50, token_pattern=u'(?u)\\b\\w+\\b')
     features = vectorizer.fit_transform(doc)
     #terms = vectorizer.get_feature_names()
-    #return features, terms
+    # return features, terms
     feature_array = np.array(vectorizer.get_feature_names())
     tfidf_sorting = np.argsort(features.toarray()).flatten()[::-1]
     topn = feature_array[tfidf_sorting][:10]
     return topn, tfidf_sorting[:10]
 
+
 def tfidf(docs):
-    vectorizer = TfidfVectorizer(min_df=1, max_df=50, token_pattern=u'(?u)\\b\\w+\\b')
+    vectorizer = TfidfVectorizer(
+        min_df=1, max_df=50, token_pattern=u'(?u)\\b\\w+\\b')
     features = vectorizer.fit_transform(docs)
     terms = vectorizer.get_feature_names()
     return features, terms
+
 
 def wakati(line):
 
@@ -41,9 +46,11 @@ def wakati(line):
             if feature[0] == "名詞":
                 w += node.surface
             else:
-                if w: wL.append(w)
+                if w:
+                    wL.append(w)
                 w = ""
         node = node.next
+
 
 path = "/Users/ay/Desktop/class/M政治データベース論/data/"
 files = []
@@ -67,7 +74,7 @@ for file in files:
 docs = [' '.join(d) for d in docs]
 
 res = tf(docs)
-print (res)
+print(res)
 
 '''
 features, terms = tf(docs)
