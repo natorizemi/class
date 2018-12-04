@@ -40,10 +40,7 @@ class Load():
         file_data.append(one_file_data)
         return file_data
 
-
-
 if __name__ == "__main__":
     loading = Load()
     test = loading.load_data()
     print(test)
-
