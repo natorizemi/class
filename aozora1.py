@@ -20,7 +20,7 @@ def lineWakatiWriter(line, writer):
 
 
 for file in os.listdir('data'):
-    # with open('data/' + file, 'r', encoding='shift_jis') as reader, open('wakati/' + file, 'w', encoding='shift_jis') as writer:
-    # with open('aozora/' + file, 'r') as reader:
-    for line in reader:
-        lineWakatiWriter(line, writer)
+    with open('data/' + file, 'r', encoding='shift_jis') as reader, open('wakati/' + file, 'w', encoding='shift_jis') as writer:
+        # with open('aozora/' + file, 'r') as reader:
+        for line in reader:
+            lineWakatiWriter(line, writer)

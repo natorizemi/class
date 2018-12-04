@@ -1,6 +1,8 @@
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfVectorizer
+from numpy import *
 import os
+import copy
 
 # 引数として、CountVectorizerとTfidfTransformerで使った双方の引数が指定できるようになっている
 tfidf_vectorizer = TfidfVectorizer(
@@ -37,15 +39,23 @@ features = count_vectorizer.get_feature_names()
 # 全ファイルパスを入れた変数でfit_transform
 files = ['wakati/' + path for path in os.listdir('wakati')]
 tfidf = tfidf_vectorizer.fit_transform(files)
-
+print(tfidf)
 # feature_name一覧
 feature_names = tfidf_vectorizer.get_feature_names()
 
 # カムパネルラの値
 print("--")
-print(tfidf.toarray()[:, features.index('老人')])
-print("--")
-print(tfidf.toarray()[:])
+for j in ['老人','政治']:
+    word_result = tfidf.toarray()[:, features.index(j)]
+    word2_result = copy.deepcopy(word_result)
+    word_list = word_result.tolist()
+    test = sorted(word2_result,reverse=True)
+    positions = []
+    for j in test[:10]:
+        positions.append(word_list.index(j))
+
+    print(positions)
+
 # => array([ 0. ,  0. ,  0. ,  0. ,  0. , 0. ,  0.43341484,  0. ])
 
 # ジョバンニの値

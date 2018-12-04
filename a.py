@@ -49,9 +49,7 @@ def wakati(line):
                     wL.append(w)
                 w = ""
         node = node.next
-
-
-path = "/Users/ay/Desktop/class/M政治データベース論/data/"
+path = os.getcwd() + "/data/"
 files = []
 texts = []
 docs = []
