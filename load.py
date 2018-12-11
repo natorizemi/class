@@ -37,7 +37,8 @@ class Load():
                     node = self.tagger.parseToNode(data)
                     word = self.analysis(node)
                     one_file_data.append(word)
-        file_data.append(one_file_data)
+                    construct = "".join(one_file_data)
+        file_data.append(construct)
         return file_data
 
 if __name__ == "__main__":
