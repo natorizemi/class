@@ -4,7 +4,7 @@ import copy
 
 
 class Analysis():
-    def __init__(self, data):
+    def __init__(self):
         pass
 
     def analyze(self, docs):
@@ -19,6 +19,7 @@ class Analysis():
             norm='l2', encoding="shift_jis"
         )
 
+        tf = count_vectorizer.fit_transform(docs)
         # featue_name一覧を取得
         features = count_vectorizer.get_feature_names()
         # features[0:5]
