@@ -8,6 +8,7 @@ class Analysis():
     def __init__(self):
         pass
 
+
     def main(self):
         # 引数として、CountVectorizerとTfidfTransformerで使った双方の引数が指定できるようになっている
         tfidf_vectorizer = TfidfVectorizer(
@@ -65,7 +66,7 @@ class Analysis():
             with open("CSV/"+file_namesd+".csv","a") as fd:
                 for s in sort_list:
                     fd.write(str(s[0])+","+str(s[1])+"\n")
-            
+
 
 
         # => array([ 0. ,  0. ,  0. ,  0. ,  0. , 0. ,  0.43341484,  0. ])
