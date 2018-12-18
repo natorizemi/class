@@ -1,4 +1,8 @@
-from load import Load
+from wakatis import *
+from analysis import *
 
-loading = Load()
-file_list = loading.analysis()
+wakati = Wakatis()
+analysis = Analysis()
+
+wakati.main()
+analysis.main()

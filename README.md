@@ -18,3 +18,11 @@ word,tfidf
 御,0.000713596
 実習,0.000607071
 ```
+
+
+### USE
+```python
+python3 main.py
+```
+
+CSVディレクトリ内に単語とTF-IDF値ができます．
