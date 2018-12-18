@@ -1,5 +1,5 @@
-from wakatis import *
-from analysis import *
+from wakatis import Wakatis
+from analysis import Analysis
 
 wakati = Wakatis()
 analysis = Analysis()
